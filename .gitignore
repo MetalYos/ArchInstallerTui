@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Exclude build folder
+build/*
+
+# Exclude premake5 file
+!build/premake5.lua
