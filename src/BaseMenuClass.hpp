@@ -31,7 +31,7 @@ public:
     virtual void HandleInput(int c);
 
 protected:
-    virtual void MenuSelected() {};
+    virtual void ItemSelected() {};
     void SetMenuPosition(MenuPositions pos);
     void CreateMenu();
     void PrintInMiddle(WINDOW *win, int startY, int startX, int width, const std::string& str);
@@ -42,11 +42,9 @@ protected:
     std::vector<MenuItemChoice> choices;
     MenuPositions position;
     std::string title;
-    int selection;
     int height, width, y ,x;
 
     ITEM** items;
     MENU* menu;
     WINDOW* menuWindow;
-    bool isNavMenu;
 };

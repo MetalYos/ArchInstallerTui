@@ -40,8 +40,7 @@ void BaseMenuClass::HandleInput(int c) {
                     pubsub.Publish(EVENT_ID_NAV_MENU_SELECTED, &(menuItemChoice->navId));
                     break;
                 default:
-                    MenuSelected();
-                    pubsub.Publish(EVENT_ID_MENU_SELECTED);
+                    ItemSelected();
                     break;
             }
             break;
@@ -115,3 +114,4 @@ void BaseMenuClass::PrintInMiddle(WINDOW *win, int startY, int startX, int width
 	mvwprintw(win, y, x, "%s", str.c_str());
 	refresh();
 }
+

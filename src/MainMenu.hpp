@@ -10,5 +10,5 @@ public:
     void Destroy();
 
 protected:
-    void MenuSelected() override {}
+    void ItemSelected() override {}
 };

@@ -14,6 +14,7 @@ enum MenuItemTypes {
 };
 
 struct MenuItemChoice {
+    int pos;
     std::string label;
     int type; 
     int navId;

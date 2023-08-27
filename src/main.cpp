@@ -10,6 +10,8 @@ int main() {
     noecho();
     keypad(stdscr, TRUE);
 
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+
     MenuManager::Instance().Initialize();
     MenuManager::Instance().Show();
     MenuManager::Instance().EventLoop();

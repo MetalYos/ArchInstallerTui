@@ -4,12 +4,10 @@
 
 MainMenu::MainMenu(PubSub& pubsub, MenuPositions position)
     : BaseMenuClass(MENU_ID_MAIN_MENU, pubsub, position, "Main Menu") {
-    choices.push_back({ "System Type", MENU_ITEM_TYPE_NAV, MENU_ID_SYSTEM_TYPE_MENU });
-    choices.push_back({ "Create Patitions", MENU_ITEM_TYPE_NAV, MENU_ID_NONE });
-    choices.push_back({ "Enter User Info", MENU_ITEM_TYPE_NAV, MENU_ID_NONE });
-    choices.push_back({ "Exit", MENU_ITEM_TYPE_EXIT, MENU_ID_NONE });
-
-    isNavMenu = true;
+    choices.push_back({ 0, "System Type", MENU_ITEM_TYPE_NAV, MENU_ID_SYSTEM_TYPE_MENU });
+    choices.push_back({ 1, "Create Patitions", MENU_ITEM_TYPE_NAV, MENU_ID_NONE });
+    choices.push_back({ 2, "Enter User Info", MENU_ITEM_TYPE_NAV, MENU_ID_NONE });
+    choices.push_back({ 3, "Exit", MENU_ITEM_TYPE_EXIT, MENU_ID_NONE });
 
     CreateMenu();
 }
