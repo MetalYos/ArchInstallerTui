@@ -1,23 +1,19 @@
 #include <BaseMenuClass.hpp>
 
-BaseMenuClass::BaseMenuClass(int id, PubSub& pubsub, MenuPositions position, const std::string& title)
-    : id(id), pubsub(pubsub), position(position), title(title)
+BaseMenuClass::BaseMenuClass(int id, PubSub& pubsub, const std::string& title, MenuPositions position)
+    : BaseWindow(id, pubsub, title), position(position)
 { 
     SetMenuPosition(position);
 }
 
 void BaseMenuClass::Show() {
     post_menu(menu);
-    wrefresh(menuWindow);
+    wrefresh(window);
 }
 
 void BaseMenuClass::Hide() {
     unpost_menu(menu);
-    wrefresh(menuWindow);
-}
-
-void BaseMenuClass::Refresh() {
-    wrefresh(menuWindow);
+    wrefresh(window);
 }
 
 void BaseMenuClass::HandleInput(int c) {
@@ -62,22 +58,22 @@ void BaseMenuClass::CreateMenu() {
     menu = new_menu((ITEM**)items);
 
     // Create window
-    menuWindow = newwin(height, width, y, x); 
-    keypad(menuWindow, TRUE);
+    window = newwin(height, width, y, x); 
+    keypad(window, TRUE);
 
     // Set main window and sub window
-    set_menu_win(menu, menuWindow);
-    set_menu_sub(menu, derwin(menuWindow, 6, width - 2, 3, 1));
+    set_menu_win(menu, window);
+    set_menu_sub(menu, derwin(window, 6, width - 2, 3, 1));
 
     // Set menu mark to a string " * "
     set_menu_mark(menu, " * ");
 
     // Print a border around the main window and print a title
-    box(menuWindow, 0, 0);
-	PrintInMiddle(menuWindow, 1, 0, width, title);
-	mvwaddch(menuWindow, 2, 0, ACS_LTEE);
-	mvwhline(menuWindow, 2, 1, ACS_HLINE, width - 2);
-	mvwaddch(menuWindow, 2, width - 1, ACS_RTEE);
+    box(window, 0, 0);
+	PrintInMiddle(window, 1, 0, width, title);
+	mvwaddch(window, 2, 0, ACS_LTEE);
+	mvwhline(window, 2, 1, ACS_HLINE, width - 2);
+	mvwaddch(window, 2, width - 1, ACS_RTEE);
 	refresh(); 
 }
 

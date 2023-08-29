@@ -11,5 +11,7 @@ public:
 
 protected:
     void ItemSelected() override;
+
+protected:
     int selectedIndex;
 };

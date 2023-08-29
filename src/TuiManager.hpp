@@ -3,12 +3,13 @@
 #include <vector>
 #include <PubSub.hpp>
 #include <BaseMenuClass.hpp>
-#include <MenuDefs.hpp>
+#include <WindowDefs.hpp>
+#include <Configuration.hpp>
 
-class MenuManager {
+class TuiManager {
 public:
-    static MenuManager& Instance() {
-        static MenuManager instance;
+    static TuiManager& Instance() {
+        static TuiManager instance;
         return instance;
     }
 
@@ -21,13 +22,16 @@ public:
     // Event Handlers
     static void ExitSelectedEventHandler(void* args, void* eventData);
     static void NavMenuSelectedEventHandler(void* args, void* eventData);
+    static void SystemTypeSelectedEventHandler(void* args, void* eventData);
 
 private:
-    MenuManager();
+    TuiManager();
 
 private:
-    std::unordered_map<MenuIds, BaseMenuClass*> menus;
-    std::vector<BaseMenuClass*> menuStack;
+    std::unordered_map<WindowIds, BaseMenuClass*> windows;
+    std::vector<BaseMenuClass*> windowStack;
     PubSub& pubsub;
     bool shouldExit;
+
+    Configuration config;
 };

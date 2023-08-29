@@ -5,10 +5,11 @@
 #include <menu.h>
 #include <vector>
 #include <string>
+#include <BaseWindow.hpp>
 #include <PubSub.hpp>
-#include <MenuDefs.hpp>
+#include <WindowDefs.hpp>
 
-class BaseMenuClass {
+class BaseMenuClass : public BaseWindow {
 public:
     enum MenuPositions {
         MENU_POS_TOP_LEFT = 0,
@@ -23,12 +24,11 @@ public:
     };
 
 public:
-    BaseMenuClass(int id, PubSub& pubsub, MenuPositions position, const std::string& title);
+    BaseMenuClass(int id, PubSub& pubsub, const std::string& title, MenuPositions position);
     virtual ~BaseMenuClass() {}
-    void Show();
+    void Show() override;
     void Hide();
-    void Refresh();
-    virtual void HandleInput(int c);
+    virtual void HandleInput(int c) override;
 
 protected:
     virtual void ItemSelected() {};
@@ -37,14 +37,9 @@ protected:
     void PrintInMiddle(WINDOW *win, int startY, int startX, int width, const std::string& str);
 
 protected:
-    int id;
-    PubSub& pubsub;
     std::vector<MenuItemChoice> choices;
     MenuPositions position;
-    std::string title;
-    int height, width, y ,x;
 
     ITEM** items;
     MENU* menu;
-    WINDOW* menuWindow;
 };

@@ -1,9 +1,9 @@
 #pragma once
 
-enum MenuIds {
-    MENU_ID_NONE = 0,
-    MENU_ID_MAIN_MENU,
-    MENU_ID_SYSTEM_TYPE_MENU
+enum WindowIds {
+    WINDOW_ID_NONE = 0,
+    WINDOW_ID_MAIN_MENU,
+    WINDOW_ID_SYSTEM_TYPE_MENU
 };
 
 enum MenuItemTypes {

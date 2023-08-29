@@ -1,7 +1,6 @@
 #include <curses.h>
-#include <menu.h>
 #include <iostream>
-#include <MenuManager.hpp>
+#include <TuiManager.hpp>
 
 int main() {
     initscr();
@@ -12,10 +11,10 @@ int main() {
 
     init_pair(1, COLOR_RED, COLOR_BLACK);
 
-    MenuManager::Instance().Initialize();
-    MenuManager::Instance().Show();
-    MenuManager::Instance().EventLoop();
-    MenuManager::Instance().Destroy();
+    TuiManager::Instance().Initialize();
+    TuiManager::Instance().Show();
+    TuiManager::Instance().EventLoop();
+    TuiManager::Instance().Destroy();
 
     endwin();
     return 0;
