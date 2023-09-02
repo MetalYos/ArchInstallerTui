@@ -68,7 +68,7 @@ void TuiManager::NavMenuSelectedEventHandler(void* args, void* eventData) {
 
 void TuiManager::SystemTypeSelectedEventHandler(void* args, void* eventData) {
     TuiManager* mgr = static_cast<TuiManager*>(args);
-    ESystemType type = *static_cast<ESystemType*>(eventData);
+    ESystemTypes type = *static_cast<ESystemTypes*>(eventData);
 
     mgr->config.systemType = type;
 }
