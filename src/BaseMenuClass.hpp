@@ -34,7 +34,6 @@ protected:
     virtual void ItemSelected() {};
     void SetMenuPosition(MenuPositions pos);
     void CreateMenu();
-    void PrintInMiddle(WINDOW *win, int startY, int startX, int width, const std::string& str);
 
 protected:
     std::vector<MenuItemChoice> choices;

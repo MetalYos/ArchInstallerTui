@@ -1,6 +1,7 @@
 #include <TuiManager.hpp>
 #include <MainMenu.hpp>
 #include <SystemTypeMenu.hpp>
+#include <CreatePartitionsWindow.hpp>
 
 TuiManager::TuiManager()
     : pubsub(PubSub::Instance()), shouldExit(false)
@@ -17,6 +18,9 @@ void TuiManager::Initialize() {
             pubsub,
             BaseMenuClass::MENU_POS_CENTER
         );  
+    windows[WINDOW_ID_CREATE_PARTITIONS_WINDOW] = new CreatePartitionsWindow(
+            pubsub
+        );
 
     windowStack.push_back(windows[WINDOW_ID_MAIN_MENU]);
 
@@ -60,6 +64,9 @@ void TuiManager::ExitSelectedEventHandler(void* args, void* eventData) {
 void TuiManager::NavMenuSelectedEventHandler(void* args, void* eventData) {
     TuiManager* mgr = static_cast<TuiManager*>(args);
     WindowIds navId = *static_cast<WindowIds*>(eventData);
+
+    if (navId == WINDOW_ID_NONE)
+        return;
 
     mgr->windowStack.pop_back();
     mgr->windowStack.push_back(mgr->windows[navId]);

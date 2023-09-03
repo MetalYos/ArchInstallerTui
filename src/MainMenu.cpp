@@ -5,7 +5,7 @@
 MainMenu::MainMenu(PubSub& pubsub, MenuPositions position)
     : BaseMenuClass(WINDOW_ID_MAIN_MENU, pubsub, "Main Menu", position) {
     choices.push_back({ 0, "System Type", MENU_ITEM_TYPE_NAV, WINDOW_ID_SYSTEM_TYPE_MENU });
-    choices.push_back({ 1, "Create Patitions", MENU_ITEM_TYPE_NAV, WINDOW_ID_NONE });
+    choices.push_back({ 1, "Create Patitions", MENU_ITEM_TYPE_NAV, WINDOW_ID_CREATE_PARTITIONS_WINDOW });
     choices.push_back({ 2, "Enter User Info", MENU_ITEM_TYPE_NAV, WINDOW_ID_NONE });
     choices.push_back({ 3, "Exit", MENU_ITEM_TYPE_EXIT, WINDOW_ID_NONE });
 

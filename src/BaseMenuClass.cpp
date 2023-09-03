@@ -90,24 +90,3 @@ void BaseMenuClass::SetMenuPosition(MenuPositions pos) {
     }
 }
 
-void BaseMenuClass::PrintInMiddle(WINDOW *win, int startY, int startX, int width, const std::string& str) {
-    int length, x, y;
-	float temp;
-
-	if(win == NULL)
-		win = stdscr;
-	getyx(win, y, x);
-	if(startX != 0)
-		x = startX;
-	if(startY != 0)
-		y = startY;
-	if(width == 0)
-		width = 80;
-
-	length = str.length();
-	temp = (width - length)/ 2;
-	x = startX + (int)temp;
-	mvwprintw(win, y, x, "%s", str.c_str());
-	refresh();
-}
-

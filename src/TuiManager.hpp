@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <vector>
 #include <PubSub.hpp>
-#include <BaseMenuClass.hpp>
+#include <BaseWindow.hpp>
 #include <WindowDefs.hpp>
 #include <Configuration.hpp>
 
@@ -28,8 +28,8 @@ private:
     TuiManager();
 
 private:
-    std::unordered_map<WindowIds, BaseMenuClass*> windows;
-    std::vector<BaseMenuClass*> windowStack;
+    std::unordered_map<WindowIds, BaseWindow*> windows;
+    std::vector<BaseWindow*> windowStack;
     PubSub& pubsub;
     bool shouldExit;
 

@@ -14,9 +14,12 @@ public:
     void SetTitle(const std::string& title);
     int GetId() const;
 
-    virtual void Show() {};
+    virtual void Show() {}
     virtual void Refresh();
     virtual void HandleInput(int c) {}
+
+protected:
+    void PrintInMiddle(WINDOW *win, int startY, int startX, int width, const std::string& str);
 
 protected:
     int id;
