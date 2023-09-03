@@ -2,8 +2,8 @@
 
 #include <BaseWindow.hpp>
 #include <Configuration.hpp>
-
-// BaseWindow(int id, PubSub& pubsub, const std::string& title);
+#include <vector>
+#include <string>
 
 class CreatePartitionsWindow : public BaseWindow {
 public:
@@ -13,7 +13,9 @@ public:
 
 private:
     void CheckBootMode();
+    void GetDisks();
 
 private:
     EBootModes bootMode;
+    std::vector<std::string> disks;
 };

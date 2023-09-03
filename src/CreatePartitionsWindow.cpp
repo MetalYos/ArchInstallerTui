@@ -2,13 +2,17 @@
 #include <WindowDefs.hpp>
 #include <fstream>
 #include <string>
+#include <filesystem>
+#include <sys/stat.h>
 
 #define BOOT_MODE_FILE_PATH     "/sys/firmware/efi/fw_platform_size"
+#define LIST_DISKS_PATH         "/sys/block"
+
+namespace fs = std::filesystem;
 
 CreatePartitionsWindow::CreatePartitionsWindow(PubSub& PubSub) 
     : BaseWindow(WINDOW_ID_CREATE_PARTITIONS_WINDOW, pubsub, "Create Partitions")
 {
-
     width = (int)(0.33f * COLS);
     height = (int)(0.5f * LINES);
     x = COLS / 2 - width / 2;
@@ -23,6 +27,7 @@ CreatePartitionsWindow::CreatePartitionsWindow(PubSub& PubSub)
 	mvwaddch(window, 2, width - 1, ACS_RTEE);
     
     CheckBootMode();
+    GetDisks();
 
     printw("BootMode: %d\n", bootMode);
 	refresh(); 
@@ -47,5 +52,28 @@ void CreatePartitionsWindow::CheckBootMode() {
 
 void CreatePartitionsWindow::Show() {
     wrefresh(window);
+}
+
+void CreatePartitionsWindow::GetDisks() {
+    // This structure would distinguish a file from a
+    // directory
+    struct stat sb;
+
+    // Looping until all the items of the directory are
+    // exhausted
+    for (const auto& entry : fs::directory_iterator(LIST_DISKS_PATH)) {
+        // Converting the path to const char * in the
+        // subsequent lines
+        std::filesystem::path outfilename = entry.path();
+        std::string outfilename_str = outfilename.filename().string();
+
+        // Testing whether the path points to a
+        // non-directory or not, if it does, displays path
+        if ((stat(outfilename_str.c_str(), &sb) != 0) || (sb.st_mode & S_IFDIR))
+            disks.push_back(outfilename_str);
+    }
+
+    for (auto& disk : disks)
+        printw("disk: %s\n", disk.c_str());
 }
 
